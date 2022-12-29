@@ -1,0 +1,12 @@
+name: pluginuhc
+main: fr.modzol.pluginuhc.Plugin
+version: 1.0-SNAPSHOT
+api-version: 1.15
+description: UHC Plugin 1.8
+commands:
+  bc:
+    description: ceci est une commande de test
+  start:
+    description: lance l'uhc
+  
+     

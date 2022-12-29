@@ -1,0 +1,11 @@
+name: UHC
+version: 1.0
+author: ModZoL
+main : fr.modzol.pluginuhc.MainUHC
+commands:
+  start:
+    description: Lance l'uhc
+    permission: host.use
+  host:
+    description: Permet d'ajouter un HOST
+    permission: host.use
