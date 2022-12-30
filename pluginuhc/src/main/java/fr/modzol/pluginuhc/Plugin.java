@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.xml.crypto.KeySelector.Purpose;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
@@ -11,6 +13,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.modzol.pluginuhc.Enums.GState;
 import fr.modzol.pluginuhc.commands.CommandHandler;
+import fr.modzol.pluginuhc.commands.feedCommand;
+import fr.modzol.pluginuhc.commands.healCommand;
 import fr.modzol.pluginuhc.listeners.CutCleanListener;
 import fr.modzol.pluginuhc.listeners.PluginListeners;
 
@@ -25,7 +29,8 @@ public class Plugin extends JavaPlugin
   private List<Player> players = new ArrayList<>();
   private List<List<Player>> Teams = new ArrayList<>();
   private TeamManager tm = new TeamManager();
-  
+  private Heal heal = new Heal(this);
+
   private int Nb_Player = Bukkit.getOnlinePlayers().size();
   private int NbMax_Player = 10;
 
@@ -34,8 +39,14 @@ public class Plugin extends JavaPlugin
     LOGGER.info("pluginuhc enabled");
     setState(GState.WAITING);
     tm.init();
-    getCommand("bc").setExecutor(new CommandHandler());
+    // Get all the commands
+    getCommand("bc").setExecutor(new CommandHandler(this));
+    getCommand("feed").setExecutor(new feedCommand(this));
+    getCommand("fh").setExecutor(new CommandHandler(this));
+    getCommand("heal").setExecutor(new healCommand(this));
     //getCommand("start").setExecutor(new startCommand());
+
+    // Get all the listeners
     getServer().getPluginManager().registerEvents(new PluginListeners(this), this);
     getServer().getPluginManager().registerEvents(new CutCleanListener(), this);
     
@@ -75,6 +86,11 @@ public class Plugin extends JavaPlugin
 
   public TeamManager getTeamManager(){
     return this.tm;
+  }
+
+  public Heal getHeal()
+  {
+    return this.heal;
   }
 
   //public List<List<Player>>;

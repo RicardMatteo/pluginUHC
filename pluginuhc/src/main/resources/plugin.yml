@@ -8,5 +8,12 @@ commands:
     description: ceci est une commande de test
   start:
     description: lance l'uhc
+  fh:
+    description: Final Heal
+  feed:
+    description: Feed the user who tipped the command
+  heal:
+    description: Feed the user who tipped the command
+
   
      

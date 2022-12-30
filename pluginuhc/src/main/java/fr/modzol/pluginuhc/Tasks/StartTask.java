@@ -21,7 +21,7 @@ public class StartTask extends BukkitRunnable{
         
         if(timer == 0) {
             Bukkit.broadcastMessage("Lancement de la partie");
-            main.setState(GState.PLAYING);
+            main.setState(GState.CAVING);
             cancel();
             
         }
