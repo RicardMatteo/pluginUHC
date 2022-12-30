@@ -1,7 +1,10 @@
-package fr.modzol.pluginuhc;
+package fr.modzol.pluginuhc.Tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import fr.modzol.pluginuhc.Plugin;
+import fr.modzol.pluginuhc.Enums.GState;
 
 
 public class StartTask extends BukkitRunnable{

@@ -9,9 +9,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.modzol.pluginuhc.Enums.GState;
 import fr.modzol.pluginuhc.commands.CommandHandler;
-import fr.modzol.pluginuhc.GState;
-//import fr.modzol.pluginuhc.PluginListeners;
+import fr.modzol.pluginuhc.listeners.CutCleanListener;
+import fr.modzol.pluginuhc.listeners.PluginListeners;
 
 /*
  * pluginuhc java plugin
@@ -36,6 +37,7 @@ public class Plugin extends JavaPlugin
     getCommand("bc").setExecutor(new CommandHandler());
     //getCommand("start").setExecutor(new startCommand());
     getServer().getPluginManager().registerEvents(new PluginListeners(this), this);
+    getServer().getPluginManager().registerEvents(new CutCleanListener(), this);
     
   }
 

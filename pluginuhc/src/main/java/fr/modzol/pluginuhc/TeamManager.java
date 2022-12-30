@@ -16,6 +16,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import fr.modzol.pluginuhc.Enums.teamEnum;
+
 
 public class TeamManager{
     
@@ -59,9 +61,9 @@ public class TeamManager{
         }
         for(int j = names.size(); j < sizeTeam; j++)
         {
-            names.add("| place libre");
+            names.add("| Place libre");
         }
-        customM.setDisplayName(_teamEnum.getName());
+        customM.setDisplayName(_teamEnum.getColorChat() + _teamEnum.getName());
         customM.setLore(names);
         Wool.setItemMeta(customM);
         return Wool;
@@ -87,8 +89,36 @@ public class TeamManager{
         for (Team team : scoreboard.getTeams()) {
             if (team.hasEntry(player.getName())) {
                 team.removeEntry(player.getName());
+                initInv();
             }   
         }
+    }
+
+    public boolean JoinTeamCheck(ItemStack item, Player player)
+    {
+        for(Team team : TeamsList)
+        {
+            if(item.equals(getWool(team)))
+            {
+                RemovePlayerFromHisTeam(player);
+                if (team.getSize() >= sizeTeam)
+                {
+                    player.sendMessage("§6La team est full :(");
+                    return false;
+                }
+                team.addEntry(player.getName());
+                initInv();
+                /*if(item.getItemMeta().hasLore()){
+                    List<String> Lore = item.getItemMeta().getLore();
+                    Lore.set(sizeTeam, player.getName()); 
+                }*/
+
+                player.sendMessage(TeamLink.get(team).getColorChat() + "Vous avez rejoint l'équipe " + team.getName()); 
+                return true;
+            }
+        }
+        player.sendMessage("Team non trouvé :(");
+        return false; 
     }
 
 }

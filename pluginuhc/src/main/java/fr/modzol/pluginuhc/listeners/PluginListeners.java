@@ -1,8 +1,10 @@
-package fr.modzol.pluginuhc;
+package fr.modzol.pluginuhc.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 
 import java.util.Arrays;
 
@@ -16,6 +18,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.Wool;
+
+import fr.modzol.pluginuhc.Plugin;
+import fr.modzol.pluginuhc.Enums.GState;
 
 public class PluginListeners implements Listener {
     private ItemMeta customM;
@@ -84,6 +90,21 @@ public class PluginListeners implements Listener {
             Player player = event.getPlayer();
             main.getTeamManager().RemovePlayerFromHisTeam(player);
         }
+    }
+
+    @EventHandler
+    public void onClick(InventoryClickEvent event){
+        ItemStack item = event.getCurrentItem();
+        //Inventory inv = event.getInventory();
+        Player player = (Player) event.getWhoClicked();
+        if (item.getType() == Material.WOOL)
+        {
+            Boolean cancel= main.getTeamManager().JoinTeamCheck(item, player);           
+            player.closeInventory();
+            event.setCancelled(cancel);
+
+        }
+
     }
     
 }

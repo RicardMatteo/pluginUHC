@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import javafx.scene.paint.Color;
+
 public class startCommand implements CommandExecutor{
 
     @Override
@@ -21,7 +23,7 @@ public class startCommand implements CommandExecutor{
                     for(String part : args){
                         bc.append(part + " ");
                     }
-                    Bukkit.broadcastMessage(bc.toString());
+                    Bukkit.broadcastMessage(Color.BLUE + bc.toString());
                 }
             }
             return true;
