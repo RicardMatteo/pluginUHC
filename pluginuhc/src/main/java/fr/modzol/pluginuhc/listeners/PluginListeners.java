@@ -99,7 +99,7 @@ public class PluginListeners implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (item.getType() == Material.WOOL)
         {
-            Boolean cancel= main.getTeamManager().JoinTeamCheck(item, player);           
+            Boolean cancel= main.getTeamManager().JoinTeamItem(item, player);           
             player.closeInventory();
             event.setCancelled(cancel);
 

@@ -15,6 +15,7 @@ import fr.modzol.pluginuhc.Enums.GState;
 import fr.modzol.pluginuhc.commands.CommandHandler;
 import fr.modzol.pluginuhc.commands.feedCommand;
 import fr.modzol.pluginuhc.commands.healCommand;
+import fr.modzol.pluginuhc.commands.startCommand;
 import fr.modzol.pluginuhc.listeners.CutCleanListener;
 import fr.modzol.pluginuhc.listeners.PluginListeners;
 
@@ -28,8 +29,10 @@ public class Plugin extends JavaPlugin
   private GState state;
   private List<Player> players = new ArrayList<>();
   private List<List<Player>> Teams = new ArrayList<>();
-  private TeamManager tm = new TeamManager();
+  private TeamManager tm = new TeamManager(this);
   private Heal heal = new Heal(this);
+  private List<Player> Spectators = new ArrayList<>();
+  private TeamTP tpt = new TeamTP(this);
 
   private int Nb_Player = Bukkit.getOnlinePlayers().size();
   private int NbMax_Player = 10;
@@ -44,7 +47,7 @@ public class Plugin extends JavaPlugin
     getCommand("feed").setExecutor(new feedCommand(this));
     getCommand("fh").setExecutor(new CommandHandler(this));
     getCommand("heal").setExecutor(new healCommand(this));
-    //getCommand("start").setExecutor(new startCommand());
+    getCommand("start").setExecutor(new startCommand(this));
 
     // Get all the listeners
     getServer().getPluginManager().registerEvents(new PluginListeners(this), this);
@@ -93,6 +96,14 @@ public class Plugin extends JavaPlugin
     return this.heal;
   }
 
+  public List<Player> getSpectators() {
+    return this.Spectators;
+  }
+
+  public TeamTP getTPTeam()
+  {
+    return this.tpt;
+  }
   //public List<List<Player>>;
 
 }

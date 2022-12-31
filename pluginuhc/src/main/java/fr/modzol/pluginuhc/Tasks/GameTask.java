@@ -10,8 +10,8 @@ import fr.modzol.pluginuhc.Enums.GState;
 
 public class GameTask extends BukkitRunnable {
     private int timer = 0;
-    private final int TimePVP = 20 * 20 * 60;
-    private final int FIVE_MINUTES =  20 * 5 * 60;
+    private final int TimePVP = 20 * 60;
+    private final int FIVE_MINUTES =  5 * 60;
     private Plugin main;
 
     public GameTask(Plugin plugin) {
@@ -28,7 +28,6 @@ public class GameTask extends BukkitRunnable {
                 main.getHeal().FinalHeal();
                 Bukkit.broadcastMessage("Activation du pvp");
                 main.setState(GState.FIGHTING);
-
             }
       
         if(timer == TimePVP) {

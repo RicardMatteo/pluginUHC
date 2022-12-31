@@ -1,5 +1,7 @@
 package fr.modzol.pluginuhc;
 
+import javax.xml.transform.Templates;
+
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -14,18 +16,29 @@ import org.bukkit.scoreboard.Team;
 
 public class TeamTP {
 
-    private static final double RAYON = 10; // Définissez ici le rayon du cercle
-    private static final double CENTRE_X = 0; // Définissez ici les coordonnées X du centre du cercle
-    private static final double CENTRE_Z = 0; // Définissez ici les coordonnées Z du centre du cercle
-    private static final double Y = 180; // Définissez ici les coordonnées Y de la position des joueurs sur le cercle
+    private final double RAYON = 100; // Définissez ici le rayon du cercle
+    private final double CENTRE_X = 0.5; // Définissez ici les coordonnées X du centre du cercle
+    private final double CENTRE_Z = 0.5; // Définissez ici les coordonnées Z du centre du cercle
+    private final double Y = 180; // Définissez ici les coordonnées Y de la position des joueurs sur le cercle
 
-    public static void TeamTP() {
+
+    private Plugin main;
+    private TeamManager tm;
+
+
+    public TeamTP(Plugin plugin)
+    {
+        this.main = plugin;
+        this.tm = plugin.getTeamManager();
+    }
+
+    public void tp() {
         
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
         int nombreDEquipes = scoreboard.getTeams().size();
         World world = Bukkit.getWorld("world");
         int numeroEquipe = 0;
-        for (Team equipe : scoreboard.getTeams()) {
+        for (Team team : scoreboard.getTeams()) {
             /*String prefix = equipe.getPrefix();
 
             // Extraction du code de couleur du préfixe
@@ -35,22 +48,25 @@ public class TeamTP {
             byte couleurBloc = DyeColor.getByChar(couleur).getData();
             //byte couleurBloc = equipe.getColor().getData();*/
             //int numeroEquipe = equipe.getName().charAt(equipe.getName().length() - 1) - '0';
+            Byte data = tm.getColorData(team);
             
             numeroEquipe++;
             double angle = (360.0 / nombreDEquipes) * (numeroEquipe - 1);
             double x = CENTRE_X + RAYON * Math.cos(Math.toRadians(angle));
             double z = CENTRE_Z + RAYON * Math.sin(Math.toRadians(angle));
-            Location location = new Location(Bukkit.getWorld("world"), x, Y+2, z);
+            Location location = new Location(Bukkit.getWorld("world"),  x, Y+2, z);
             
             for (int i = (int) x - 2; i <= (int) x + 2; i++) {
                 for (int j = (int) z - 2; j <= (int) z + 2; j++) {
                     Block block = world.getBlockAt(i, (int) Y, j);
-                    block.setType(Material.GLASS);
-                    //block.setData();
+                    
+                    block.setType(Material.STAINED_GLASS);
+                    block.setData(data);
+          
                 }
             }
 
-            for (OfflinePlayer offjoueur : equipe.getPlayers()) {
+            for (OfflinePlayer offjoueur : team.getPlayers()) {
                 Player joueur = offjoueur.getPlayer();
                 joueur.teleport(location);
             }
