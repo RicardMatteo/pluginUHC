@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.xml.crypto.KeySelector.Purpose;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.modzol.pluginuhc.Enums.GState;
+import fr.modzol.pluginuhc.Manager.PvpManager;
+import fr.modzol.pluginuhc.Manager.TeamManager;
+import fr.modzol.pluginuhc.Manager.TeamTP;
 import fr.modzol.pluginuhc.commands.CommandHandler;
 import fr.modzol.pluginuhc.commands.feedCommand;
 import fr.modzol.pluginuhc.commands.healCommand;
@@ -33,6 +34,7 @@ public class Plugin extends JavaPlugin
   private Heal heal = new Heal(this);
   private List<Player> Spectators = new ArrayList<>();
   private TeamTP tpt = new TeamTP(this);
+  private PvpManager pvpManager = new PvpManager(this);
 
   private int Nb_Player = Bukkit.getOnlinePlayers().size();
   private int NbMax_Player = 10;
@@ -103,6 +105,11 @@ public class Plugin extends JavaPlugin
   public TeamTP getTPTeam()
   {
     return this.tpt;
+  }
+
+  public PvpManager getPvpManager()
+  {
+    return this.pvpManager;
   }
   //public List<List<Player>>;
 

@@ -1,4 +1,4 @@
-package fr.modzol.pluginuhc;
+package fr.modzol.pluginuhc.Manager;
 
 import javax.xml.transform.Templates;
 
@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import fr.modzol.pluginuhc.Plugin;
+
 
 public class TeamTP {
 
@@ -22,13 +24,13 @@ public class TeamTP {
     private final double Y = 180; // Définissez ici les coordonnées Y de la position des joueurs sur le cercle
 
 
-    private Plugin main;
+    //private Plugin main;
     private TeamManager tm;
 
 
     public TeamTP(Plugin plugin)
     {
-        this.main = plugin;
+        //this.main = plugin;
         this.tm = plugin.getTeamManager();
     }
 

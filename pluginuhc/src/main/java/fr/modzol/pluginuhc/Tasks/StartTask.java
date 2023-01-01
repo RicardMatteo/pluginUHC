@@ -4,8 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.modzol.pluginuhc.Plugin;
-import fr.modzol.pluginuhc.TeamTP;
 import fr.modzol.pluginuhc.Enums.GState;
+import fr.modzol.pluginuhc.Manager.TeamTP;
 
 
 public class StartTask extends BukkitRunnable{

@@ -3,8 +3,10 @@ package fr.modzol.pluginuhc.listeners;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
+
 
 import java.util.Arrays;
 
@@ -106,5 +108,22 @@ public class PluginListeners implements Listener {
         }
 
     }
+
+    @EventHandler
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player) 
+        || !(event.getDamager() instanceof Player)) 
+        {
+            return;
+        }
+
+        // Récupération des joueurs impliqués dans le combat
+        //Player victim = (Player) event.getEntity();
+        //Player attacker = (Player) event.getDamager();
     
+        if(!main.getPvpManager().canPVP())
+        {
+            event.setCancelled(true);
+        }
+    }
 }

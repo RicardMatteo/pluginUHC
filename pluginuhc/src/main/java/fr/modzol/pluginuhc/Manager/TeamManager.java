@@ -1,4 +1,4 @@
-package fr.modzol.pluginuhc;
+package fr.modzol.pluginuhc.Manager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import fr.modzol.pluginuhc.Plugin;
 import fr.modzol.pluginuhc.Enums.teamEnum;
 import net.md_5.bungee.api.ChatColor;
 
