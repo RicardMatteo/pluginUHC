@@ -29,7 +29,6 @@ public class Plugin extends JavaPlugin
 
   private GState state;
   private List<Player> players = new ArrayList<>();
-  private List<List<Player>> Teams = new ArrayList<>();
   private TeamManager tm = new TeamManager(this);
   private Heal heal = new Heal(this);
   private List<Player> Spectators = new ArrayList<>();
