@@ -1,0 +1,8 @@
+Constant:
+  Nb_Teams:
+Teams:
+  #todo
+Scenarios:
+  Cutclean:
+    True
+    
