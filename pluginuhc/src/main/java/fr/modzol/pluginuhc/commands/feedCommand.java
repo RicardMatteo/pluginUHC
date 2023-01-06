@@ -24,7 +24,6 @@ public class feedCommand implements CommandExecutor{
                 main.getHeal().Feed(player);
                 return true;
             }
-        
         }
         return false;
     }

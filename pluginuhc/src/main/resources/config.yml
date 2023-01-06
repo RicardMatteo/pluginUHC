@@ -5,4 +5,7 @@ Teams:
 Scenarios:
   Cutclean:
     True
-    
+  superheros:
+    false
+  teaminventory:
+    false

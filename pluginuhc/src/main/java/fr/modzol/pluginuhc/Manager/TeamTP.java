@@ -74,7 +74,7 @@ public class TeamTP {
             }
         }
     }
-
+ 
     /*private byte getByteColor(char couleur) {
         DyeColor couleurDyeColor;
         switch (couleur) {
