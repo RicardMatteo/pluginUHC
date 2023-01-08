@@ -15,16 +15,16 @@ public class CraftListener implements Listener {
     public void OnCraftEvent(CraftItemEvent event)
     {
         ItemStack item = event.getCursor();
-        HumanEntity player = event.getWhoClicked();
-        player.sendMessage(null);
-
+        HumanEntity human = event.getWhoClicked();
+        
         ItemStack notchApple = new ItemStack(Material.GOLDEN_APPLE);
         notchApple.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
-
+        
         if(notchApple.isSimilar(item))
         {
-
+            
             event.setCancelled(true);
+            human.sendMessage("Vous ne pouvez pas crafter ça.");
         }
     }
 }

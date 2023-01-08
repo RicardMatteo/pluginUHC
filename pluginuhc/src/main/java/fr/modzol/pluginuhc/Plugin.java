@@ -19,6 +19,8 @@ import fr.modzol.pluginuhc.commands.healCommand;
 import fr.modzol.pluginuhc.commands.startCommand;
 import fr.modzol.pluginuhc.listeners.CutCleanListener;
 import fr.modzol.pluginuhc.listeners.PluginListeners;
+import fr.modzol.pluginuhc.listeners.PotionListener;
+import fr.modzol.pluginuhc.listeners.RodListener;
 
 /*
  * pluginuhc java plugin
@@ -49,10 +51,12 @@ public class Plugin extends JavaPlugin
     getCommand("fh").setExecutor(new CommandHandler(this));
     getCommand("heal").setExecutor(new healCommand(this));
     getCommand("start").setExecutor(new startCommand(this));
-
+    
     // Get all the listeners
     getServer().getPluginManager().registerEvents(new PluginListeners(this), this);
+    getServer().getPluginManager().registerEvents(new RodListener(), this);
     getServer().getPluginManager().registerEvents(new CutCleanListener(), this);
+    getServer().getPluginManager().registerEvents(new PotionListener(), this);
     
   }
 
